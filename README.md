@@ -20,3 +20,4 @@
 
 ## Remark
 1. Now I use my own douban uid for test
+2. Need jQuery, now I use one in another project, so I didn't upload it.
