@@ -1,0 +1,74 @@
+/*
+dark blue: 4882B0;
+middle blue: 6EB0C6;
+light blue: CDEAEE;
+nearly black: 0D1228;
+*/
+nav ul {
+	list-style: none;
+	clear: both;
+	margin: 5px 10px;
+	float: right;
+	position: relative;
+}
+
+nav ul li {
+	float: left;
+	margin: 5px 15px;
+}
+ul.books {
+	list-style: none;
+	clear: both;
+}
+
+ul.books li {
+	float: left;
+	margin: 5px 10px;
+}
+
+/*h1 {
+	clear: both;
+}
+*/
+body {
+	padding: 10px 40px;
+}
+
+a {
+	color: #4882B0;
+	text-decoration: none;
+	padding: 5px;
+	cursor: pointer;
+}
+
+a:hover {
+	background: #CDEAEE;
+	color: #0D1228;
+}
+
+footer {
+	clear: both;
+	border-top: 1px dotted #6EB0C6;
+	margin: 10px;
+	padding: 10px;
+	text-align: right;
+}
+
+ul.manage-books {
+	list-style: none;
+}
+
+ul.manage-books li {
+	float: left;
+	width: 280px;
+	margin: 10px 0;
+}
+
+.manage-option ul li {
+	margin: 10px;
+}
+
+section.book-list, section.manage-option {float: left;}
+section.book-list {width: 900px;}
+section.manage-option {width: 200px;}
+
