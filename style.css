@@ -72,3 +72,33 @@ section.book-list, section.manage-option {float: left;}
 section.book-list {width: 900px;}
 section.manage-option {width: 200px;}
 
+/* add a new book */
+#add-book-table {
+	width: 600px;
+}
+
+#add-book-table tr {
+	height: 40px;
+}
+
+#add-book-table tr td {
+	line-height: 40px;
+	width: 160px;
+}
+
+#add-book-table tr td input[type=text] {
+	width: 260px;
+}
+
+#add-book-table td.choice {
+}
+
+#add-book-table tr td sup {
+	font-style: italic;
+	font-size: 11px;
+	color: #007722;
+}
+
+#add-book-table tr td label {
+	cursor: pointer;
+}

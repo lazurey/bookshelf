@@ -1,6 +1,7 @@
 <?php 
 	include 'db.inc.php';
 	mysql_query("SET NAMES 'utf8'");
+	$cook_uid = 1;
 	include 'func.php';
 
 	// $loginFlag = false;

@@ -26,13 +26,14 @@ function checkAndSaveBookByIsbn ($uid, $title, $db_id, $isbn) {
 	$date = date("Y-m-d");
 	if (mysql_num_rows($result) > 0) {
 		$this_book = mysql_fetch_array($result);
-		$checkRelSql = "SELECT * FROM relate WHERE uid = " . $uid . " AND $bid = " . $this_book['bid'];
+		$checkRelSql = "SELECT * FROM relate WHERE uid = " . $uid . " AND bid = " . $this_book['bid'];
+		//echo $checkRelSql;
 		$relResult = mysql_query($checkRelSql);
 		if (mysql_num_rows($relResult) > 0) {
 			return false;
 		} else {
 			$addRelSql = "INSERT INTO relate (rid, uid, bid, buy_date, status, remark) VALUES ";
-			$addRelSql .= "('', " . $uid . ", " . $this_book['bid'] . ", " . $date . ", 1, '')";
+			$addRelSql .= "('', " . $uid . ", " . $this_book['bid'] . ", '" . $date . "', 1, '')";
 			mysql_query($addRelSql);
 		}
 	} else {
@@ -41,7 +42,7 @@ function checkAndSaveBookByIsbn ($uid, $title, $db_id, $isbn) {
 		mysql_query($addNewBookSql);
 		$bid = mysql_insert_id();
 		$addRelSql = "INSERT INTO relate (rid, uid, bid, buy_date, status, remark) VALUES ";
-		$addRelSql .= "('', " . $uid . ", " . $bid . ", " . $date . ", 1, '')";
+		$addRelSql .= "('', " . $uid . ", " . $bid . ", '" . $date . "', 1, '')";
 		mysql_query($addRelSql);
 	}
 }
@@ -113,6 +114,18 @@ function getDoubanJson($db_user, $status, $start, $count) {
 	return $json;
 }
 
+function getDoubanJsonByUrl ($url) {
+	$ch = curl_init($url);
+	$options = array(
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_HTTPHEADER => array('Content-type: application/json')
+	);
+	curl_setopt_array($ch, $options);
+	$result = curl_exec($ch);
+	$json = json_decode($result);
+	return $json;
+}
+
 function getUserBookshelf($uid) {
 	$sql = "SELECT b.*, r.* FROM book b, relate r WHERE r.uid = " . $uid . " and r.bid = b.bid ORDER BY b.bid DESC";
 	$result = mysql_query($sql);
@@ -128,6 +141,62 @@ function deleteUserBookRelate($book_str) {
 	$delSql = "DELETE from relate WHERE uid = " . $uid . " AND bid in (" . $book_str . ")";
 	mysql_query($delSql);
 	return true;
+}
+
+function saveNewBook ($way, $value) {
+	if ($way == "douban") {
+		addBookByDoubanLink($value);
+	} else if ($way == "isbn") {
+		addBookByIsbn($value);
+	} else if ($way == "title") {
+		echo "here";
+		addBookByTitle($value, 'New book');
+	} else {
+		return false;
+	}
+}
+
+function addBookByDoubanLink ($link) {
+	$book_api = str_replace('http://book.douban.com/subject/', 'https://api.douban.com/v2/book/', $link);
+	if (strrpos($book_api, "/") + 1 == strlen($book_api)) {
+		$book_api = substr($book_api, 0, -1);
+	}
+	$book_json = getDoubanJsonByUrl($book_api);
+	if (!is_null($book_json)) {
+		$title = $book_json->title;
+		$db_id = $book_json->id;
+		$isbn = $book_json->isbn13;
+		$uid = 1;
+		checkAndSaveBookByIsbn($uid, $title, $db_id, $isbn);
+	}
+}
+
+function addBookByTitle ($title, $remark) {
+	$uid = 1;
+	$date = date("Y-m-d");
+	$addNewBookSql = "INSERT INTO book (bid, title, status, isbn, dbid, remark) VALUES ";
+	$addNewBookSql .= "('', '" . $title . "', 1, '', '', '" . $remark . "')";
+	mysql_query($addNewBookSql);
+	$bid = mysql_insert_id();
+	$addRelSql = "INSERT INTO relate (rid, uid, bid, buy_date, status, remark) VALUES ";
+	$addRelSql .= "('', " . $uid . ", " . $bid . ", '" . $date . "', 1, '')";
+	mysql_query($addRelSql);
+}
+
+function addBookByIsbn ($isbn) {
+	$book_api = 'https://api.douban.com/v2/book/isbn/' . $isbn;
+	$book_json = getDoubanJsonByUrl($book_api);
+	if (!is_null($book_json)) {
+		$title = $book_json->title;
+		$db_id = $book_json->id;
+		$isbn = $book_json->isbn13;
+		$uid = 1;
+		checkAndSaveBookByIsbn($uid, $title, $db_id, $isbn);
+	}
+}
+
+function checkDoubanWithIsbn ($isbn) {
+	
 }
 
 ?>

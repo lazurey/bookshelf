@@ -14,7 +14,7 @@ while ($book = mysql_fetch_array($books)) {
 </section>
 <section class="manage-option">
 	<ul>
-		<li><a href="">添加一本书</a></li>
+		<li><a href="add.php">添加一本书</a></li>
 		<li><a onclick="manageBook();">管理选一本书</a></li>
 		<li><a onclick="deleteBooks();">删除选中的书</a></li>
 		<li>
