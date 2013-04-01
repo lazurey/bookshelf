@@ -24,6 +24,7 @@ ul.books {
 ul.books li {
 	float: left;
 	margin: 5px 10px;
+	width: 250px;
 }
 
 /*h1 {

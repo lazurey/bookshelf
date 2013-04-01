@@ -21,3 +21,5 @@
 ## Remark
 1. Now I use my own douban uid for test
 2. Need jQuery, now I use one in another project, so I didn't upload it.
+3. Won't be opened to other users, the demo one only for displaying my books.
+   So I removed all the admin pages from the demo stie.

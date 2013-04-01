@@ -27,7 +27,9 @@ if (isset($_POST['ways'])) {
 				<label for='douban'>豆瓣链接<sup>推荐</sup></label>
 			</td>
 			<td>
-				<input type="text" placeholder='http://book.douban.com/subject/1424314/' name='db_link'>
+				<label for='douban'>
+					<input type="text" placeholder='http://book.douban.com/subject/1424314/' name='db_link'>
+				</label>
 			</td>
 		</tr>
 		<tr>
@@ -36,7 +38,9 @@ if (isset($_POST['ways'])) {
 				<label for='isbn'>ISBN<sup>推荐</sup></label>
 			</td>
 			<td>
-				<input type='text' placeholder='9780451524935' name='isbn'>
+				<label for='isbn'>
+					<input type='text' placeholder='9780451524935' name='isbn'>
+				</label>
 			</td>
 		</tr>
 		<tr>
@@ -45,7 +49,9 @@ if (isset($_POST['ways'])) {
 				<label for='title'>书名<sup>不推荐</sup></label>
 			</td>
 			<td>
-				<input type='text' name='title' placeholder='1984'>
+				<label for='title'>
+					<input type='text' name='title' placeholder='1984'>
+				</label>
 			</td>
 		</tr>
 	</table>

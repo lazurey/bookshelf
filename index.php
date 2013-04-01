@@ -5,7 +5,12 @@ $books = getUserBookshelf($uid);
 $total = mysql_num_rows($books);
 $html = "<h5>共" . $total . "本...</h5><ul class='books'>";
 while ($book = mysql_fetch_array($books)) {
-	$html .= "<li><a href='http://book.douban.com/subject/" . $book['dbid'] . "/'>" . $book['title'] . "</a></li>";
+	if (strlen($book['dbid']) > 3) {
+		$html .= "<li><a href='http://book.douban.com/subject/" . $book['dbid'] . "/'>" . $book['title'] . "</a></li>";	
+	} else {
+		$html .= "<li>" . $book['title'] . "</li>";
+	}
+	
 }
 
 ?>

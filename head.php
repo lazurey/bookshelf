@@ -39,10 +39,10 @@
 <body>
 	<nav>
 		<ul>
-			<li><a href="index.php">首页</a></li>
 			<li><a href="manage.php">管理书架</a></li>
-			<!--<li><a href="import.php">从豆瓣导入</a></li>-->
+			<!--<li><a href="index.php">首页</a></li>
+			<li><a href="import.php">从豆瓣导入</a></li>
 			<li><a href="">登陆</a></li>
-			<li><a href="">退出</a></li>
+			<li><a href="">退出</a></li>-->
 		</ul>
 	</nav>
