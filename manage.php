@@ -8,7 +8,7 @@ while ($book = mysql_fetch_array($books)) {
 }
 
 ?>
-<h1>我的书架</h1>
+<h1><a href="index.php">我的书架</a></h1>
 <section class="book-list">
 	<?php echo $html; ?>
 </section>

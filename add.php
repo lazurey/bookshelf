@@ -56,6 +56,8 @@ if (isset($_POST['ways'])) {
 		</tr>
 	</table>
 	<input type='submit' value='提交'>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="index.php">取消</a>
 </form>
 
 <?php 
