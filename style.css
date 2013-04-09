@@ -33,6 +33,18 @@ ul.books li {
 	border: 1px solid gray;
 	-webkit-transform: rotate(10deg);
 	-moz-transform: rotate(10deg);
+	position: relative;
+}
+
+ul.books li img.book-cover {
+	display: none;
+}
+
+ul.books li:hover img.book-cover {
+	display: block;
+	float: left;
+	position: absolute;
+	top: 0;	
 }
 
 ul.books li:hover {
@@ -118,4 +130,32 @@ section.manage-option {width: 200px;}
 
 #add-book-table tr td label {
 	cursor: pointer;
+}
+
+.one {
+	background: #FFFFC0;
+}
+
+.two {
+	background: #C0FFC0;
+}
+
+.three {
+	background: #C0FFFF;
+}
+
+.four {
+	background: #C0C0D7;
+}
+
+.five {
+	background: #FFC1B3;
+}
+
+.six {
+	background: #E0E0E0;
+}
+
+.seven {
+	background: #f5f5f5;
 }
